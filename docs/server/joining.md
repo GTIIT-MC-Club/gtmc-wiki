@@ -30,7 +30,7 @@
 
 直接拖动 <button id="ygg-dnd-button" class="btn btn-primary" draggable="true" data-clipboard-text="https://skin.gtmc.top/api/yggdrasil">这个魔法按钮</button> 到任意启动器，即可快速添加认证服务器
 
-如果无事发生，你也可以复制 `https://skin.gtmc.top/api/yggdrasil` 并手动设置认证服务器
+如果无事发生，你也可以复制 `https://skin.gtmc.top/api/yggdrasil` 并[手动设置认证服务器](authserver.md)
 
 
 在启动器里添加一个「外置登录」或「authlib-injector」账户，服务器地址填：
