@@ -23,9 +23,11 @@
   --gtmc-ease: cubic-bezier(0.2, 0, 0, 1);
   --gtmc-block-edge: inset 0 -2px 0 rgb(0 0 0 / 0.3);
   --gtmc-pressed-offset: 1px;
+  --gtmc-highlighter-color: color-mix(in srgb, var(--gtmc-accent) 35%, transparent);
+  /* 用在行内元素上（和论坛一样）；块元素上的用法见 custom.css 的侧栏当前项 */
   --gtmc-highlighter: linear-gradient(
     transparent 62%,
-    color-mix(in srgb, var(--gtmc-accent) 35%, transparent) 62%
+    var(--gtmc-highlighter-color) 62%
   );
 }
 

@@ -69,9 +69,32 @@
   font-weight: 600;
 }
 
-.VPNavBar:not(.home.top) .content-body,
-.VPNavBar.has-sidebar .content-body {
-  background: var(--gtmc-surface);
+/*
+ * 顶栏和论坛页头一样：整条通栏一个底色、底下一道贯穿全宽的分隔线。
+ * VitePress 默认只给中间的 content-body 上色，分隔线从侧栏右边才开始、Logo 下面另有一段，
+ * 页面底色和顶栏底色不同时，宽屏右侧会露出一截不同颜色、线也断成两段。
+ */
+@media (min-width: 960px) {
+  .VPNavBar:not(.home.top) {
+    background: var(--gtmc-surface);
+  }
+
+  .VPNavBar:not(.home.top) .content-body {
+    background: transparent;
+  }
+
+  /* 默认规则带组件作用域属性，针对性更高，只能 !important */
+  .VPNavBar.has-sidebar .divider {
+    padding-left: 0 !important;
+  }
+
+  .VPNavBar:not(.home.top) .divider-line {
+    background: var(--gtmc-border);
+  }
+
+  .VPNavBarTitle.has-sidebar .title {
+    border-bottom: none;
+  }
 }
 
 /* ---- 侧栏：悬停换底色，当前条目用荧光笔 ---- */
@@ -85,16 +108,30 @@
   }
 }
 
+/* 和论坛侧栏一样：当前项文字保持正文色、加粗，强调只靠下面的荧光笔。
+   默认规则带组件作用域属性，会把字染成强调色，绿字压绿底发糊，只能 !important */
 .VPSidebarItem.is-active > .item .text {
-  color: var(--gtmc-text);
+  color: var(--gtmc-text) !important;
   font-weight: 600;
 }
 
-/* .text 是撑满整行的块，收窄到文字宽度，荧光笔才只压在字上 */
+/*
+ * .text 是撑满整行的块，收窄到文字宽度，荧光笔才只压在字上。
+ * 它上下各有 4px 内边距、行高大于字号，直接套论坛的 62% 渐变会落到字下面去；
+ * 这里只画在内容区，以行的中线为基准按字号定位：从中线下 0.15em 涂到 0.6em，
+ * 和论坛在行内元素上的效果一样，压在字的下半截。
+ */
 .VPSidebarItem.is-active > .item .text {
   flex-grow: 0;
   width: fit-content;
-  background: var(--gtmc-highlighter);
+  background: linear-gradient(
+    transparent calc(50% + 0.15em),
+    var(--gtmc-highlighter-color) calc(50% + 0.15em),
+    var(--gtmc-highlighter-color) calc(50% + 0.6em),
+    transparent calc(50% + 0.6em)
+  );
+  background-clip: content-box;
+  background-origin: content-box;
 }
 
 /* 顶栏当前板块：和论坛导航一样，底下一道加粗的强调色线（约 3px） */
