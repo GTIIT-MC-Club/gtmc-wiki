@@ -1,0 +1,19 @@
+{
+  "name": "gtmc-wiki",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "GTIIT Minecraft Club wiki, built with VitePress and deployed on Cloudflare Pages.",
+  "scripts": {
+    "dev": "vitepress dev docs",
+    "build": "vitepress build docs",
+    "preview": "vitepress preview docs"
+  },
+  "devDependencies": {
+    "vitepress": "^1.6.4",
+    "vue": "^3.5.13"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

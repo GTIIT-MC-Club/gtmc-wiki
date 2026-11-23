@@ -1,0 +1,5 @@
+# Cloudflare Pages configuration.
+# Read by `wrangler pages deploy` and by the Cloudflare dashboard Git integration.
+name = "gtmc-wiki"
+compatibility_date = "2025-01-01"
+pages_build_output_dir = "docs/.vitepress/dist"
