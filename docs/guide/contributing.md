@@ -35,7 +35,8 @@ npm run build
 gtmc-wiki
 ├─ docs/                 # 所有内容都在这里
 │  ├─ .vitepress/
-│  │  └─ config.mts      # 站点配置：导航、侧边栏、页脚
+│  │  ├─ config.mts      # 站点配置：导航、侧边栏、页脚
+│  │  └─ theme/          # GTMC 统一风格（配色和论坛、皮肤站一致）
 │  ├─ index.md           # 首页（home layout）
 │  ├─ guide/             # 指南板块
 │  ├─ server/            # 服务器板块
@@ -50,6 +51,8 @@ gtmc-wiki
 - 命令和配置放进代码块并标注语言。
 - 新增页面后，记得在 `docs/.vitepress/config.mts` 的 `sidebar` 里加上链接，
   否则只能靠直接输 URL 访问。
+- 提示框用 `::: tip`（绿）、`::: warning`（棕）、`::: danger`（红），别用太多，一页一两个就够。
+- 会过时的东西（某次活动、临时维护）发论坛，不写进 Wiki。
 - 截图放在 `docs/public/`，引用时用绝对路径，例如 `/images/foo.png`。
 
 ## 审核标准

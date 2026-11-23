@@ -1,0 +1,180 @@
+/*
+ * VitePress 把圆角、按钮手感写死在组件里，变量覆盖不到，这里逐个改。
+ * 规则对照论坛主题 README「视觉规范」：圆角 2px、实心按钮有方块下沿、
+ * 选中态用荧光笔、键盘焦点统一描边、动效 120ms 先快后慢。
+ */
+
+/* ---- 圆角收到 2px ---- */
+.VPButton,
+.VPFeature,
+.VPFeature .icon,
+.VPBadge,
+.VPMenu,
+.VPMenuLink .link,
+.VPNavBarSearchButton,
+.DocSearch-Button,
+.VPLocalSearchBox .shell,
+.VPLocalSearchBox .search-bar,
+.VPLocalSearchBox .result,
+.VPDocFooter .pager-link,
+.VPSidebarItem .item,
+.VPLocalNavOutlineDropdown .items,
+.vp-doc .custom-block,
+.vp-doc div[class*='language-'],
+.vp-doc .vp-code-group .tabs,
+.vp-doc :not(pre) > code,
+.vp-doc table,
+.vp-doc img {
+  border-radius: var(--gtmc-radius) !important;
+}
+
+.vp-doc .vp-code-group .tabs + .blocks div[class*='language-'] {
+  border-top-left-radius: 0 !important;
+  border-top-right-radius: 0 !important;
+}
+
+/* ---- 按钮：实心按钮像方块，按下去下沿消失、整体下移 ---- */
+.VPButton {
+  font-weight: 500;
+  transition:
+    background-color var(--gtmc-duration-state) var(--gtmc-ease),
+    color var(--gtmc-duration-state) var(--gtmc-ease),
+    border-color var(--gtmc-duration-state) var(--gtmc-ease),
+    box-shadow var(--gtmc-duration-state) var(--gtmc-ease),
+    transform var(--gtmc-duration-state) var(--gtmc-ease);
+}
+
+.VPButton.brand {
+  box-shadow: var(--gtmc-block-edge);
+}
+
+.VPButton:active {
+  box-shadow: none;
+  transform: translateY(var(--gtmc-pressed-offset));
+}
+
+/* ---- 键盘焦点环：只给键盘，鼠标点击不出环 ---- */
+:focus-visible {
+  outline: 2px solid var(--gtmc-accent);
+  outline-offset: 2px;
+}
+
+/* ---- 顶栏：Logo 像素保持方块，站名跟在 Logo 后面 ---- */
+.VPNavBarTitle .logo {
+  image-rendering: pixelated;
+}
+
+.VPNavBarTitle .title {
+  gap: 10px;
+  font-weight: 600;
+}
+
+.VPNavBar:not(.home.top) .content-body,
+.VPNavBar.has-sidebar .content-body {
+  background: var(--gtmc-surface);
+}
+
+/* ---- 侧栏：悬停换底色，当前条目用荧光笔 ---- */
+.VPSidebarItem .item {
+  transition: background-color var(--gtmc-duration-state) var(--gtmc-ease);
+}
+
+@media (hover: hover) {
+  .VPSidebarItem.is-link > .item:hover {
+    background: var(--gtmc-hover);
+  }
+}
+
+.VPSidebarItem.is-active > .item .text {
+  color: var(--gtmc-text);
+  font-weight: 600;
+}
+
+/* .text 是撑满整行的块，收窄到文字宽度，荧光笔才只压在字上 */
+.VPSidebarItem.is-active > .item .text {
+  flex-grow: 0;
+  width: fit-content;
+  background: var(--gtmc-highlighter);
+}
+
+/* 顶栏当前板块：和论坛导航一样，底下一道加粗的强调色线（约 3px） */
+.VPNavBarMenuLink {
+  position: relative;
+}
+
+.VPNavBarMenuLink.active {
+  font-weight: 600;
+}
+
+.VPNavBarMenuLink.active::after {
+  content: '';
+  position: absolute;
+  right: 12px;
+  bottom: 0;
+  left: 12px;
+  height: 3px;
+  background: var(--gtmc-accent);
+}
+
+.VPSidebarItem.is-active > .item .indicator {
+  background: transparent;
+}
+
+/* ---- 首页：特性卡片是信息块，统一边框，没有悬停效果 ---- */
+.VPFeature {
+  border: 1px solid var(--gtmc-border) !important;
+  background: var(--gtmc-surface) !important;
+}
+
+.VPHero .name {
+  letter-spacing: 0;
+}
+
+/* ---- 提示框：和皮肤站 .callout 一样，左边一道色线 ---- */
+.vp-doc .custom-block {
+  border: 1px solid var(--gtmc-border);
+  border-left: 3px solid var(--gtmc-muted);
+}
+
+.vp-doc .custom-block.tip {
+  border-left-color: var(--gtmc-accent);
+}
+
+.vp-doc .custom-block.warning {
+  border-left-color: var(--gtmc-accent2);
+}
+
+.vp-doc .custom-block.danger,
+.vp-doc .custom-block.caution {
+  border-left-color: var(--gtmc-danger);
+}
+
+/* ---- 正文细节 ---- */
+.vp-doc a {
+  text-underline-offset: 2px;
+  transition: color var(--gtmc-duration-state) var(--gtmc-ease);
+}
+
+.vp-doc div[class*='language-'] {
+  border: 1px solid var(--gtmc-border);
+}
+
+.vp-doc kbd {
+  padding: 0 4px;
+  border: 1px solid var(--gtmc-border);
+  border-radius: var(--gtmc-radius);
+  background: var(--gtmc-surface);
+  box-shadow: var(--gtmc-block-edge);
+  font-size: 0.9em;
+}
+
+/* 页脚：和论坛页脚一样，上面一道粗分隔线 */
+.VPFooter {
+  border-top: 2px solid var(--gtmc-border) !important;
+  background: var(--gtmc-bg);
+}
+
+.VPFooter .message,
+.VPFooter .copyright {
+  color: var(--gtmc-muted);
+}

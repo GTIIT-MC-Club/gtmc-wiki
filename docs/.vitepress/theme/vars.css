@@ -1,0 +1,146 @@
+/*
+ * 颜色全部取自论坛主题 gtmc-forum-theme/about.json 的两套配色（GTMC Light / GTMC Dark），
+ * 皮肤站 gtmc-auth-core/deploy/skin/plugins/gtmc-casdoor/assets/gtmc.css 用的也是同一组值。
+ * 改配色时三处一起改；次要文字色是论坛按 WCAG AA 验算过的，不要换回 VitePress 默认。
+ */
+:root {
+  --gtmc-text: #1b211a;          /* primary */
+  --gtmc-bg: #f5f6f1;            /* secondary */
+  --gtmc-surface: #fbfbf8;       /* header_background：顶栏、侧栏、卡片 */
+  --gtmc-accent: #2a741b;        /* tertiary：草方块绿 */
+  --gtmc-accent2: #8a5a2b;       /* quaternary：泥土棕 */
+  --gtmc-muted: #5b6d58;         /* primary-medium */
+  --gtmc-faint: #717f6d;         /* primary-500 */
+  --gtmc-hover: #e9ece4;
+  --gtmc-selected: #dff0d8;
+  --gtmc-danger: #b3261e;
+  --gtmc-highlight: #f5e08a;
+  --gtmc-border: color-mix(in srgb, var(--gtmc-text) 15%, var(--gtmc-bg));
+
+  /* 形状与动效：和论坛 common/common.scss 的令牌一致 */
+  --gtmc-radius: 2px;
+  --gtmc-duration-state: 120ms;
+  --gtmc-ease: cubic-bezier(0.2, 0, 0, 1);
+  --gtmc-block-edge: inset 0 -2px 0 rgb(0 0 0 / 0.3);
+  --gtmc-pressed-offset: 1px;
+  --gtmc-highlighter: linear-gradient(
+    transparent 62%,
+    color-mix(in srgb, var(--gtmc-accent) 35%, transparent) 62%
+  );
+}
+
+.dark {
+  --gtmc-text: #e6eae3;
+  --gtmc-bg: #171a17;
+  --gtmc-surface: #0e100e;
+  --gtmc-accent: #6cc04a;
+  --gtmc-accent2: #c08a4e;
+  --gtmc-muted: #9aac8d;
+  --gtmc-faint: #9aac8d;
+  --gtmc-hover: #252a25;
+  --gtmc-selected: #1e3a1b;
+  --gtmc-danger: #f0705a;
+  --gtmc-highlight: #6b5a1d;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --gtmc-duration-state: 0s;
+    --gtmc-pressed-offset: 0;
+  }
+}
+
+/* ---- 映射到 VitePress 的变量 ---- */
+:root,
+.dark {
+  --vp-font-family-base: system-ui, -apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+
+  --vp-c-bg: var(--gtmc-bg);
+  --vp-c-bg-alt: var(--gtmc-surface);
+  --vp-c-bg-elv: var(--gtmc-surface);
+  --vp-c-bg-soft: var(--gtmc-surface);
+  --vp-nav-bg-color: var(--gtmc-surface);
+  --vp-sidebar-bg-color: var(--gtmc-surface);
+  --vp-local-nav-bg-color: var(--gtmc-surface);
+
+  --vp-c-text-1: var(--gtmc-text);
+  --vp-c-text-2: var(--gtmc-muted);
+  --vp-c-text-3: var(--gtmc-faint);
+
+  --vp-c-divider: var(--gtmc-border);
+  --vp-c-border: var(--gtmc-border);
+  --vp-c-gutter: var(--gtmc-border);
+
+  --vp-c-default-1: var(--gtmc-muted);
+  --vp-c-default-2: var(--gtmc-border);
+  --vp-c-default-3: var(--gtmc-border);
+  --vp-c-default-soft: var(--gtmc-hover);
+
+  --vp-c-brand-1: var(--gtmc-accent);
+  --vp-c-brand-2: color-mix(in srgb, var(--gtmc-accent) 88%, var(--gtmc-text));
+  --vp-c-brand-3: var(--gtmc-accent);
+  --vp-c-brand-soft: color-mix(in srgb, var(--gtmc-accent) 15%, transparent);
+
+  --vp-c-tip-1: var(--gtmc-accent);
+  --vp-c-tip-2: var(--gtmc-accent);
+  --vp-c-tip-3: var(--gtmc-accent);
+  --vp-c-tip-soft: color-mix(in srgb, var(--gtmc-accent) 10%, var(--gtmc-surface));
+
+  --vp-c-note-1: var(--gtmc-muted);
+  --vp-c-note-soft: var(--gtmc-hover);
+
+  --vp-c-warning-1: var(--gtmc-accent2);
+  --vp-c-warning-2: var(--gtmc-accent2);
+  --vp-c-warning-3: var(--gtmc-accent2);
+  --vp-c-warning-soft: color-mix(in srgb, var(--gtmc-accent2) 12%, var(--gtmc-surface));
+
+  --vp-c-danger-1: var(--gtmc-danger);
+  --vp-c-danger-2: var(--gtmc-danger);
+  --vp-c-danger-3: var(--gtmc-danger);
+  --vp-c-danger-soft: color-mix(in srgb, var(--gtmc-danger) 10%, var(--gtmc-surface));
+
+  --vp-c-caution-1: var(--gtmc-danger);
+  --vp-c-caution-soft: color-mix(in srgb, var(--gtmc-danger) 10%, var(--gtmc-surface));
+
+  --vp-button-brand-border: transparent;
+  --vp-button-brand-text: var(--gtmc-bg);
+  --vp-button-brand-bg: var(--gtmc-accent);
+  --vp-button-brand-hover-border: transparent;
+  --vp-button-brand-hover-text: var(--gtmc-bg);
+  --vp-button-brand-hover-bg: var(--vp-c-brand-2);
+  --vp-button-brand-active-border: transparent;
+  --vp-button-brand-active-text: var(--gtmc-bg);
+  --vp-button-brand-active-bg: var(--vp-c-brand-2);
+
+  --vp-button-alt-border: var(--gtmc-border);
+  --vp-button-alt-text: var(--gtmc-text);
+  --vp-button-alt-bg: transparent;
+  --vp-button-alt-hover-border: var(--gtmc-border);
+  --vp-button-alt-hover-text: var(--gtmc-text);
+  --vp-button-alt-hover-bg: var(--gtmc-hover);
+  --vp-button-alt-active-border: var(--gtmc-border);
+  --vp-button-alt-active-text: var(--gtmc-text);
+  --vp-button-alt-active-bg: var(--gtmc-selected);
+
+  --vp-home-hero-name-color: var(--gtmc-text);
+  --vp-home-hero-name-background: none;
+  --vp-home-hero-image-background-image: none;
+
+  --vp-code-block-bg: var(--gtmc-surface);
+  --vp-code-tab-bg: var(--gtmc-surface);
+  --vp-code-bg: var(--gtmc-hover);
+  --vp-code-color: var(--gtmc-text);
+
+  --vp-badge-tip-bg: var(--gtmc-accent);
+  --vp-badge-tip-text: var(--gtmc-bg);
+  --vp-badge-tip-border: transparent;
+
+  --vp-shadow-1: none;
+  --vp-shadow-2: none;
+  --vp-shadow-3: 0 0 0 1px var(--gtmc-border);
+  --vp-shadow-4: 0 0 0 1px var(--gtmc-border);
+  --vp-shadow-5: 0 0 0 1px var(--gtmc-border);
+
+  /* Logo 是 38×13 的像素画，高度取 13 的 2 倍，一格正好 2 个屏幕像素 */
+  --vp-nav-logo-height: 26px;
+}
