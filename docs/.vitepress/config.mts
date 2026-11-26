@@ -20,7 +20,7 @@ export default defineConfig({
 
   themeConfig: {
     // 和皮肤站一样：论坛的像素 Logo 后面跟站名
-    logo: { src: '/gtmc-logo.svg', alt: 'GTMC' },
+    logo: { src: '/gtmc-logo.png', alt: 'GTMC' },
     siteTitle: 'Wiki',
 
     nav: [
